@@ -67,8 +67,17 @@ export default function Generator() {
                 <i className="fa-solid absolute right-3 top-1/2 -translate-y-1/2 fa-caret-down"></i>
             </button>
             {showModal && (
-                <div>
-                    Modal
+                <div className='flex flex-col p-3'>
+                    {(poison === 'individual' ? WORKOUTS[poison] : Object.keys(WORKOUTS[poison])).map((muscleGroup, muscleGroupIndex)=>
+                    {
+                       return(
+                        <button key={muscleGroupIndex}
+                        className='hover:text-blue-100'
+                        >
+                            <p className='uppercase'>{muscleGroup}</p>
+                        </button>
+                       )
+                    })}
                 </div>
             )}
         </div>
