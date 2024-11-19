@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 import SectionWrapper from './SectionWrapper'
 import { SCHEMES, WORKOUTS } from '../utils/swoldier'
+import Button from './Button'
 
-export default function Generator() {
+
+export default function Generator(props) {
+
 
     function Header(props){
 
@@ -11,7 +14,7 @@ export default function Generator() {
 
         return(
         <>
-            <div className='flex flex-col gap-4'>
+            <div className='flex flex-col gap-10'>
                 <div className='flex items-center justify-center gap-2'>
                     <p className='text-3xl sm:4xl md:5xl font-semibold text-slate-400'>{index}</p>
                     <h4 className='text-lg sm:text-2xl md:text-3xl'> {title} </h4>
@@ -22,10 +25,13 @@ export default function Generator() {
         )
     }
 
+
+    const {muscles, setMuscles, poison, setPoison, goals, setGoals , updateWorkout} = props
+
     const [showModal, setShowModal] = useState(false)
-    const [poison, setPoison] = useState('individual')
-    const [muscles, setMuscles] = useState([])
-    const [goals, setGoals] = useState('strength_power')
+
+   
+
 
     function toggleModal(){
         setShowModal(!showModal)
@@ -38,7 +44,7 @@ export default function Generator() {
             return
         }
         
-        if (muscles.length > 3){
+        if (muscles.length > 2){
             return
         }
 
@@ -49,7 +55,7 @@ export default function Generator() {
         }
 
         setMuscles([...muscles, muscleGroup])
-        if (muscles.length === 3){
+        if (muscles.length === 2){
             setShowModal(false)
         }
     }
@@ -57,7 +63,7 @@ export default function Generator() {
 
   return (
 
-    <SectionWrapper header = {"generate your workout"} title = {['It\'s','Huge', 'o\'clock']}>
+    <SectionWrapper id={'generate'} header = {"generate your workout"} title = {['It\'s','Huge', 'o\'clock']}>
 
        <Header index={'01'} title={'Pick you poison'}
        description= {'Select the workout you wish to endure!'} />
@@ -114,7 +120,7 @@ export default function Generator() {
      <Header index={'03'} title={'Become Juggernaut'}
        description= {'Select your ultimate objective!'} />
 
-       <div className='grid grid-cols-3 sm:grid-cols-4 gap-4'>
+       <div className='grid grid-cols-1 sm:grid-cols-3 sm:grid-cols-4 gap-4'>
 
        {Object.keys(SCHEMES).map((scheme, schemeIndex) => {
            return(
@@ -128,7 +134,8 @@ export default function Generator() {
     })}
     </div>
 
-
+        <Button func={updateWorkout} text= {"Formulate"}></Button>
     </SectionWrapper>
+   
   )
 }
