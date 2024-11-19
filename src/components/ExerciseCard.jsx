@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 export default function ExerciseCard(props) {
 
     const { exercise, i } = props
-    const [setsCompleted,setSetsCompleted] = useState(0)
+    const [setsCompleted , setSetsCompleted] = useState(0)
 
     function handleSetIncrement(){
       setSetsCompleted((setsCompleted + 1) % 6)
